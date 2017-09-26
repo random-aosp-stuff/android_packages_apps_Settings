@@ -13675,4 +13675,8 @@
     <string name="battery_stats_reset">Clear usage data?</string>
     <string name="battery_stats_message">Battery usage data will be lost</string>
     <string name="battery_stats_clear">@string/proxy_clear_text</string>
+
+    <!-- Double tap to sleep on status bar or lockscreen -->
+    <string name="double_tap_sleep_gesture_title">Tap to sleep</string>
+    <string name="double_tap_sleep_gesture_summary">Double-tap on the status bar or lockscreen to turn off the display</string>
 </resources>
