@@ -13629,4 +13629,7 @@
     <string name="duration_less_than_one_minute">Less than 1 Minute</string> 
     <!-- Summary for Wellbeing screen time usage. [CHAR LIMIT=NONE] -->
     <string name="screen_time_summary_usage_today">%1$s today</string>
+
+    <!-- About phone screen, status item label  [CHAR LIMIT=60] -->
+    <string name="vendor_security_patch">Vendor security patch level</string>
 </resources>
