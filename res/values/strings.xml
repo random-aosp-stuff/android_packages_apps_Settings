@@ -13638,4 +13638,8 @@
     <string name="platform_revision">Platform</string>
     <!-- Label for device's RAM size [CHAR LIMIT=40] -->
     <string name="total_ram">Total RAM</string>
+
+    <!-- Battery light -->
+    <string name="battery_light_title">Battery light</string>
+    <string name="battery_light_summary">Turn on the light while charging and blink when battery is low</string>
 </resources>
