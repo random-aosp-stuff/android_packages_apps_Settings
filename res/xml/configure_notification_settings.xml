@@ -105,6 +105,12 @@
         android:key="configure_notifications_advanced"
         android:order="15">
 
+        <com.abc.support.preferences.SystemSettingSwitchPreference
+            android:key="notification_headers"
+            android:title="@string/notification_headers_title"
+            android:summary="@string/notification_headers_summary"
+            android:defaultValue="true" />
+
         <SwitchPreference
             android:key="silent_icons"
             android:title="@string/silent_notifications_status_bar"

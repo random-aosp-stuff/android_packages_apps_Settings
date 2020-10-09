@@ -170,4 +170,8 @@
     <!-- Quick Settings on lockscreen-->
     <string name="ls_qs_disabled_title">Disable QS on lockscreen</string>
     <string name="ls_qs_disabled_summary">Disable expanding quick settings on secure lockscreen</string>
+
+    <!-- Notification headers -->
+    <string name="notification_headers_title">Notification Headers</string>
+    <string name="notification_headers_summary">Show headers in the notification shade</string>
 </resources>
