@@ -62,6 +62,12 @@
             android:summary="@string/lockdown_settings_summary"
             settings:controller="com.android.settings.security.LockdownButtonPreferenceController" />
 
+        <com.abc.support.preferences.SystemSettingSwitchPreference
+            android:key="status_bar_locked_on_secure_keyguard"
+            android:title="@string/ls_qs_disabled_title"
+            android:summary="@string/ls_qs_disabled_summary"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
