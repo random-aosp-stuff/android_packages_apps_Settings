@@ -93,11 +93,13 @@
     <string name="lockpattern_settings_enable_dots_title">Show pattern dots</string>
 
     <!-- Lock screen cover art -->
-    <string name="lockscreen_media_art_title">Display media cover art</string>
+    <string name="lockscreen_media_art_title">Lockscreen media art</string>
+    <string name="lockscreen_media_art_summary">Display media cover art when playing music</string>
     <string name="lockscreen_media_blur_title">Media art blur level</string>
 
     <!-- Lock screen visualizer -->
-    <string name="lockscreen_visualizer_title">Display music visualizer</string>
+    <string name="lockscreen_visualizer_title">Lockscreen music visualizer</string>
+    <string name="lockscreen_visualizer_summary">Display visualizer when playing music</string>
 
     <!-- Min refresh rate -->
     <string name="min_refresh_rate_title">Minimum refresh rate</string>
