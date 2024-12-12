@@ -54,6 +54,7 @@ import androidx.preference.PreferenceManager;
 public class RingtonePreference extends Preference {
 
     private static final String TAG = "RingtonePreference";
+    private static final String GOOGLE_SP_PKG_NAME = "com.google.android.soundpicker";
 
     private int mRingtoneType;
     private boolean mShowDefault;
@@ -76,7 +77,10 @@ public class RingtonePreference extends Preference {
                 true);
         String packageName = context.getString(R.string.config_sound_picker_package_name);
         Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
-        if (lineageos.preference.ConstraintsHelper.isPackageInstalled(context, packageName, true)) {
+        // prioritize google sound picker if manually installed by user
+        if (lineageos.preference.ConstraintsHelper.isPackageInstalled(context, GOOGLE_SP_PKG_NAME, true)) {
+            intent.setPackage(GOOGLE_SP_PKG_NAME);
+        } else if (lineageos.preference.ConstraintsHelper.isPackageInstalled(context, packageName, true)) {
             intent.setPackage(packageName);
         }
         setIntent(intent);
