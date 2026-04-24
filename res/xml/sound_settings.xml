@@ -171,6 +171,13 @@
             settings:controller="com.android.settings.sound.MediaControlsParentPreferenceController"
             settings:keywords="@string/keywords_media_controls"/>
 
+        <SwitchPreferenceCompat
+            android:key="ring_alarm_phone_speaker"
+            android:title="@string/ring_alarm_phone_speaker_title"
+            android:summary="@string/ring_alarm_phone_speaker_summary"
+            android:order="-90"
+            settings:controller="com.android.settings.notification.RingAlarmPhoneSpeakerPreferenceController"/>
+
         <com.android.settingslib.PrimarySwitchPreference
             android:key="gesture_prevent_ringing_sound"
             android:title="@string/gesture_prevent_ringing_sound_title"

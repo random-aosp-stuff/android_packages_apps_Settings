@@ -218,6 +218,10 @@
     <string name="notification_sound_vib_screen_on_title">Noisy notifications</string>
     <string name="notification_sound_vib_screen_on_summary">Play sound and vibration for notifications when screen is on</string>
 
+    <!-- Sound settings -->
+    <string name="ring_alarm_phone_speaker_title">Keep ringtone and alarms on phone speaker</string>
+    <string name="ring_alarm_phone_speaker_summary">When headphones or earbuds are connected, ringtone and alarms play on the phone speaker instead of the accessory. Calls and notifications stay unchanged.</string>
+
     <!-- App info screen -->
     <string name="hide">Hide</string>
     <string name="hidden">Hidden</string>
