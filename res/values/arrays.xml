@@ -1753,4 +1753,19 @@
         <!-- Do not translate. -->
         <item>28800000</item>
     </string-array>
+
+    <!-- Carrier name on lockscreen/statusbar -->
+    <string-array name="status_bar_carrier_display_entries">
+        <item>@string/status_bar_carrier_never</item>
+        <item>@string/carrier_show_lockscreen_only</item>
+        <item>@string/carrier_show_statusbar_only</item>
+        <item>@string/carrier_show_both</item>
+    </string-array>
+
+    <string-array name="status_bar_carrier_display_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
 </resources>

@@ -238,4 +238,15 @@
     <string name="accessibility_slider_haptics_category_title">Sliders</string>
     <string name="accessibility_brightness_slider_haptic_title">Brightness slider haptic</string>
     <string name="accessibility_volume_dialog_haptic_title">Volume slider haptic</string>
+
+    <!-- Carrier name on lockscreen/statusbar -->
+    <string name="status_bar_carrier_never">Never</string>
+    <string name="status_bar_carrier_category_title">Carrier label</string>
+    <string name="lockscreen_show_carrier_title">Show carrier label</string>
+    <string name="carrier_show_lockscreen_only">Lockscreen only</string>
+    <string name="carrier_show_statusbar_only">Status bar only</string>
+    <string name="carrier_show_both">Lockscreen &amp; status bar</string>
+    <string name="custom_carrier_label_title">Custom carrier label</string>
+    <string name="custom_carrier_label_summary">Tap to set a custom carrier label</string>
+    <string name="custom_carrier_label_dialog_message">Replace the carrier label with custom text. Leave empty to use the real carrier label.</string>
 </resources>

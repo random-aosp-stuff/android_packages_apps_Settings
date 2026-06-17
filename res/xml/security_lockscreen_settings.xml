@@ -94,6 +94,22 @@
             android:title="@string/lockscreen_double_line_clock_setting_toggle"
             android:summary="@string/lockscreen_double_line_clock_summary"
             settings:controller="com.android.settings.display.LockscreenClockPreferenceController" />
+
+        <!-- Carrier label -->
+        <ListPreference
+            android:key="lockscreen_show_carrier"
+            android:title="@string/lockscreen_show_carrier_title"
+            android:summary="%s"
+            android:entries="@array/status_bar_carrier_display_entries"
+            android:entryValues="@array/status_bar_carrier_display_values"
+            android:defaultValue="1"
+            settings:controller="com.android.settings.security.CarrierLabelPreferenceController" />
+
+        <Preference
+            android:key="lockscreen_show_custom_carrier_text"
+            android:title="@string/custom_carrier_label_title"
+            android:summary="@string/custom_carrier_label_summary"
+            settings:controller="com.android.settings.security.CustomCarrierLabelPreferenceController" />
     </PreferenceCategory>
 
     <PreferenceCategory
