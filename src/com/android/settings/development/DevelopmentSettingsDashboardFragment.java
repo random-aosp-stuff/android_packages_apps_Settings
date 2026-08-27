@@ -45,6 +45,7 @@ import android.os.UserManager;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +56,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.preference.PreferenceManager;
+import androidx.preference.PreferenceScreen;
 
 import com.android.settings.R;
 import com.android.settings.SettingsActivity;
@@ -673,13 +676,68 @@ public class DevelopmentSettingsDashboardFragment extends RestrictedDashboardFra
             return;
         }
 
-        DevelopmentSettingsEnabler.setDevelopmentSettingsEnabled(getContext(), false);
+        resetDeveloperOptions(getContext(), mPreferenceControllers);
+    }
+
+    /**
+     * Disable developer options and reset every developer preference to its default, the same
+     * path used by the dashboard main switch. Safe to call without an inflated preference screen.
+     */
+    static void disableDeveloperOptionsFromExternal(Context context) {
+        if (Utils.isMonkeyRunning()) {
+            return;
+        }
+        if (Enable16kUtils.isPageAgnosticModeOn(context)) {
+            Log.w(TAG, "Refusing to disable developer options while page-agnostic mode is on");
+            return;
+        }
+        // Hide the menu even if a controller fails to construct; then reset the rest.
+        DevelopmentSettingsEnabler.setDevelopmentSettingsEnabled(context, false);
+        try {
+            final Context themedContext = new ContextThemeWrapper(context, R.style.Theme_Settings);
+            final List<AbstractPreferenceController> controllers = buildPreferenceControllers(
+                    themedContext, null /* activity */, null /* lifecycle */,
+                    null /* fragment */, new BluetoothA2dpConfigStore());
+            bindControllersForHeadlessReset(themedContext, controllers);
+            resetDeveloperOptions(themedContext, controllers);
+        } catch (RuntimeException e) {
+            Log.e(TAG, "Failed to reset developer preference controllers", e);
+        }
+    }
+
+    /**
+     * Bind each controller to an inflated, off-screen preference tree so
+     * {@code onDeveloperOptionsDisabled()} can update UI widgets without NPEs.
+     */
+    private static void bindControllersForHeadlessReset(Context context,
+            List<AbstractPreferenceController> controllers) {
+        final PreferenceManager preferenceManager = new PreferenceManager(context);
+        final PreferenceScreen screen = preferenceManager.inflateFromResource(
+                context, R.xml.development_settings, null /* rootPreferences */);
+        for (AbstractPreferenceController controller : controllers) {
+            try {
+                controller.displayPreference(screen);
+            } catch (RuntimeException e) {
+                Log.w(TAG, "Failed to bind " + controller.getClass().getSimpleName()
+                        + ": " + e.getMessage());
+            }
+        }
+    }
+
+    private static void resetDeveloperOptions(Context context,
+            List<AbstractPreferenceController> controllers) {
+        DevelopmentSettingsEnabler.setDevelopmentSettingsEnabled(context, false);
         final SystemPropPoker poker = SystemPropPoker.getInstance();
         poker.blockPokes();
-        for (AbstractPreferenceController controller : mPreferenceControllers) {
+        for (AbstractPreferenceController controller : controllers) {
             if (controller instanceof DeveloperOptionsPreferenceController) {
-                ((DeveloperOptionsPreferenceController) controller)
-                        .onDeveloperOptionsDisabled();
+                try {
+                    ((DeveloperOptionsPreferenceController) controller)
+                            .onDeveloperOptionsDisabled();
+                } catch (RuntimeException e) {
+                    Log.w(TAG, "Failed to reset " + controller.getClass().getSimpleName()
+                            + ": " + e.getMessage());
+                }
             }
         }
         poker.unblockPokes();

@@ -68,10 +68,12 @@ public class TransparentNavigationBarPreferenceController
     @Override
     protected void onDeveloperOptionsSwitchDisabled() {
         super.onDeveloperOptionsSwitchDisabled();
-        ((TwoStatePreference) mPreference).setChecked(false);
         final boolean enabled = isEnabled();
         if (!enabled) {
             setEnabled(false);
+        }
+        if (mPreference instanceof TwoStatePreference) {
+            ((TwoStatePreference) mPreference).setChecked(false);
         }
     }
 

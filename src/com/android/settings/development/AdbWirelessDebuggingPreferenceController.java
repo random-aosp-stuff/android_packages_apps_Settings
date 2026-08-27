@@ -110,10 +110,12 @@ public class AdbWirelessDebuggingPreferenceController extends DeveloperOptionsPr
     @Override
     protected void onDeveloperOptionsSwitchDisabled() {
         super.onDeveloperOptionsSwitchDisabled();
-        mPreference.setEnabled(false);
         Settings.Global.putInt(mContext.getContentResolver(),
                 Settings.Global.ADB_WIFI_ENABLED,
                 AdbPreferenceController.ADB_SETTING_OFF);
+        if (mPreference != null) {
+            mPreference.setEnabled(false);
+        }
     }
 
     @Override

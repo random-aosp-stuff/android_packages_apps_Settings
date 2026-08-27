@@ -254,6 +254,16 @@
             </intent-filter>
         </receiver>
 
+        <receiver
+            android:name=".development.DisableDevelopmentSettingsReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.WRITE_SECURE_SETTINGS">
+            <intent-filter>
+                <action android:name="com.android.settingslib.development.action.DISABLE_DEVELOPMENT_SETTINGS" />
+            </intent-filter>
+        </receiver>
+
         <service
             android:name=".development.PageAgnosticNotificationService"
             android:enabled="true"

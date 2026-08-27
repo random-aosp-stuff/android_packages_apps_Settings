@@ -27,6 +27,7 @@ public class LocalTerminalPreferenceController extends DeveloperOptionsPreferenc
         super(context);
 
         mUserManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+        mPackageManager = getPackageManager();
     }
 
     @Override
@@ -76,9 +77,14 @@ public class LocalTerminalPreferenceController extends DeveloperOptionsPreferenc
     @Override
     protected void onDeveloperOptionsSwitchDisabled() {
         super.onDeveloperOptionsSwitchDisabled();
+        if (mPackageManager == null) {
+            mPackageManager = getPackageManager();
+        }
         mPackageManager.setApplicationEnabledSetting(TERMINAL_APP_PACKAGE,
                 PackageManager.COMPONENT_ENABLED_STATE_DEFAULT, 0 /* flags */);
-        ((TwoStatePreference) mPreference).setChecked(false);
+        if (mPreference instanceof TwoStatePreference) {
+            ((TwoStatePreference) mPreference).setChecked(false);
+        }
     }
 
     @VisibleForTesting
